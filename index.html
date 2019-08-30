@@ -9,6 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body onload="cdreset()">
+
 		<header>
 		</header> 
 		<center>
@@ -18,10 +19,11 @@
 					<span id="timespan"></span>
 				</h1>
 			
-				<form onsubmit="updateCountdownTimer()">
+				<form action="#" onsubmit="updateCountdownTimer()">
 					Countdown timer (seconds):</br>
-					<input id="ctimer" type="number" name="quantity" min="1">
-					<input type="submit" value="Update"></br></br>
+					<input id="ctimer" type="number" min="1">
+					<input type="submit" value="Update">
+					</br></br>
 				</form>
 			</div>
 			<div>
@@ -32,11 +34,11 @@
 		</center>
 		<script>
 			var CCOUNT = 60;
-			function updateCountdownTimer() {
+
+			function updateCountdownTimer(){
 				CCOUNT = document.getElementById("ctimer").value;
 				cdreset();
 			}
-
 
 			document.body.onkeyup = function(e){
 				if(e.keyCode == 13){
@@ -51,7 +53,6 @@
 				*/
 			}
 
-			//var CCOUNT = 60;
 			var t, count;
 
 			function cddisplay() {
@@ -78,6 +79,7 @@
 			function cdreset() {
 				// resets countdown
 				cdpause();
+				alert(CCOUNT)
 				count = CCOUNT;
 				cddisplay();
 			};
