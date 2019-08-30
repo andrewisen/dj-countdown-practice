@@ -18,7 +18,14 @@
 				<h1 style="font-size:20vw;">
 					<span id="timespan"></span>
 				</h1>
-				</br></br>
+				
+			</div>
+			<div>
+				<form action="/action_page.php" onsubmit="myFunction()">
+				Countdown timer (seconds):</br>
+				<input id="ctimer" type="number" name="quantity" min="1">
+				<input type="submit" value="Update"></br></br>
+				</form>
 			</div>
 			<div>
 				<input type="button" value="Start" onclick="countdown()">
@@ -27,6 +34,12 @@
 				</div>
 			</center>
 		<script>
+			var CCOUNT = 60;
+			function myFunction() {
+				CCOUNT = document.getElementById("ctimer").value;
+				cdreset();
+
+			}
 			document.body.onkeyup = function(e){
 				if(e.keyCode == 13){
 					cdreset();
@@ -34,7 +47,7 @@
 				}
 			}
 
-			var CCOUNT = 60;
+			//var CCOUNT = 60;
 			var t, count;
 
 			function cddisplay() {
