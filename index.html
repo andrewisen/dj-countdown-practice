@@ -9,16 +9,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body onload="cdreset()">
-
 		<header>
 		</header> 
 		<center>
-			<div>
+			<div onmousedown="touchMe()">
 				</br></br>
 				<h1 style="font-size:20vw;">
 					<span id="timespan"></span>
 				</h1>
-			
 				<form action="#" onsubmit="updateCountdownTimer()">
 					Countdown timer (seconds):</br>
 					<input id="ctimer" type="number" min="1">
@@ -32,25 +30,40 @@
 				<input type="button" value="Reset" onclick="cdreset()">
 				</div>
 		</center>
+
 		<script>
 			var CCOUNT = 60;
+			var ctimerValue = "";
 
 			function updateCountdownTimer(){
-				CCOUNT = document.getElementById("ctimer").value;
+				ctimerValue = document.getElementById("ctimer").value;
+
+				if (ctimerValue != ""){
+					CCOUNT = ctimerValue;
+				} else {
+					CCOUNT = CCOUNT;
+				}
 				cdreset();
 			}
 
 			document.body.onkeyup = function(e){
 				if(e.keyCode == 13){
+					updateCountdownTimer();
 					cdreset();
 					countdown();
 				}
-				/*
-				if(e.keyCode != 0){
+				
+				if ((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) { 
+					updateCountdownTimer();
 					cdreset();
 					countdown();
 				}
-				*/
+			}
+
+			function touchMe(){
+				updateCountdownTimer();
+				cdreset();
+				countdown();
 			}
 
 			var t, count;
