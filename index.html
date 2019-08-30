@@ -13,7 +13,9 @@
 		<div id="countdown"></div>
 		<script>
 			document.body.onkeyup = function(e){
-				if(e.keyCode == 32){
+				// Spacebar 32
+				// Enter 16
+				if(e.keyCode == 32 || e.keyCode == 16){
 					var timeleft = 10;
 
 					var downloadTimer = setInterval(function(){
