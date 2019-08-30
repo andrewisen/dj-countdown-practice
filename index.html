@@ -4,31 +4,66 @@
 		<meta charset="utf-8">
 
 		<title>DJ Countdown</title>
-		<meta name="description" content="The HTML5 Herald">
-		<meta name="author" content="SitePoint">
-
-		<link rel="stylesheet" href="css/styles.css?v=1.0">
+		<meta name="description" content="DJ Counter">
+		<meta name="author" content="André Wisén">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
-	<body>
-		<div id="countdown"></div>
+	<body onload="cdreset()">
+		<header>
+		</header> 
+
+		<center>
+			<div>
+				</br></br>
+				<h1 style="font-size:20vw;">
+					<span id="timespan"></span>
+				</h1>
+				</br></br>
+			</div>
+			<div>
+				<input type="button" value="Start" onclick="countdown()">
+				<input type="button" value="Stop" onclick="cdpause()">
+				<input type="button" value="Reset" onclick="cdreset()">
+				</div>
+			</center>
 		<script>
 			document.body.onkeyup = function(e){
-				// Spacebar 32
-				// Enter 16
-				if(e.keyCode == 32 || e.keyCode == 16){
-					var timeleft = 10;
-
-					var downloadTimer = setInterval(function(){
-					document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
-					timeleft -= 1;
-					if(timeleft <= 0){
-					clearInterval(downloadTimer);
-					document.getElementById("countdown").innerHTML = "Finished"
-					}
-					}, 1000);
+				if(e.keyCode == 13){
+					cdreset();
+					countdown();
 				}
 			}
 
+			var CCOUNT = 60;
+			var t, count;
+
+			function cddisplay() {
+				// displays time in span
+				document.getElementById('timespan').innerHTML = count;
+			};
+
+			function countdown() {
+				// starts countdown
+				cddisplay();
+				if (count == 0) {
+					// time is up
+				} else {
+					count--;
+					t = setTimeout("countdown()", 1000);
+				}
+			};
+
+			function cdpause() {
+				// pauses countdown
+				clearTimeout(t);
+			};
+
+			function cdreset() {
+				// resets countdown
+				cdpause();
+				count = CCOUNT;
+				cddisplay();
+			};
 
 		</script>
 	</body>
